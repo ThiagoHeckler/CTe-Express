@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="definitivo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">CTe Express</div>
+        <div class="title">Principal</div>
+        <div class="menu">
+          <ul>
+            <li><a href="principal.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="logout.html">logout</a></li>
+          </ul>
+          <button class="burger" onclick="toggleMenu()">☰</button>
+        </div>
+      </header>
+      <section class="main-content">
+        <div class="sidebar" id="sidebar">
+          <ul>
+            <li><a href="emissor.html">Emissor CT-e</a></li>
+            <li><a href="relatorios.html">Relatório</a></li>
+            <li><a href="veiculos.html">Caminhões</a></li>
+            <li><a href="cadmotorista.html">Motoristas</a></li>
+            <li><a href="administradores.html">Administradores</a></li>
+            <li><a href="financeiro.html">Financeiro</a></li>
+            <li><a href="compras.html">Compras</a></li>
+          </ul>
+        </div>
+        <div class="content">
+          <div class="info-box">
+            <div class="info-image"></div>
+            <div class="info-text">
+              <p>
+                NOME - Depende de quem está acessando: EMPRESA - ADM - MOTORISTA
+              </p>
+              <ul>
+                <li>Empresa</li>
+                <li>Administrador</li>
+                <li>Motorista</li>
+              </ul>
+            </div>
+          </div>
+          <div class="additional-info">
+            <p>Pode conter algumas informações básicas</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Função para abrir e fechar o menu lateral
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

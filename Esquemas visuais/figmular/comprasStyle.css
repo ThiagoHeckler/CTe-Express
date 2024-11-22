@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffe4cc;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff8c42;
+  padding: 10px 20px;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.menu button {
+  background-color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background-color: #ffd1a3;
+}
+
+main {
+  margin-top: 20px;
+}
+
+.cadastro,
+.filtros {
+  background-color: #666;
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.cadastro h2,
+.filtros h2 {
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-cadastrar,
+.btn-filtrar {
+  background-color: #00cc00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-cadastrar:hover,
+.btn-filtrar:hover {
+  background-color: #009900;
+}
+
+.lista-compras table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.lista-compras th,
+.lista-compras td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.lista-compras th {
+  background-color: #ff8c42;
+  color: white;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #ff8c42;
+  font-weight: bold;
+}
+
+.pagination a:hover {
+  color: #333;
+}

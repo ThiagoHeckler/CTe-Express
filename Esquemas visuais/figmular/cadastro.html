@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="definitivo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="https://via.placeholder.com/30" alt="Logo" />
+        <h1>Cadastro</h1>
+      </div>
+      <div class="form">
+        <label for="nomeFantasia">Nome Fantasia:</label>
+        <input
+          type="text"
+          id="nomeFantasia"
+          placeholder="Digite o nome fantasia" />
+
+        <label for="razaoSocial">Razão Social:</label>
+        <input
+          type="text"
+          id="razaoSocial"
+          placeholder="Digite a razão social" />
+
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" placeholder="Digite o CNPJ" />
+
+        <label for="inscricaoEstadual">Inscrição Estadual:</label>
+        <input
+          type="text"
+          id="inscricaoEstadual"
+          placeholder="Digite a inscrição estadual" />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Digite o email" />
+
+        <label for="dataAbertura">Abertura:</label>
+        <input type="date" id="dataAbertura" />
+
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" placeholder="Digite o CEP" />
+
+        <label for="numero">Número:</label>
+        <input type="number" id="numero" placeholder="Digite o número" />
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" placeholder="Digite o bairro" />
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" placeholder="Digite a rua" />
+
+        <label>Tipo de Transporte:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="transporte" value="Rodoviário" /> Rodoviário</label>
+          <label><input type="checkbox" name="transporte" value="Aéreo" /> Aéreo</label>
+          <label><input type="checkbox" name="transporte" value="Marítimo" /> Marítimo</label>
+          <label><input type="checkbox" name="transporte" value="Ferroviário" /> Ferroviário</label>
+        </div>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite a senha" />
+
+        <div class="buttons">
+          <button id="cadastrarBtn" class="submit">Cadastrar</button>
+          <button class="cancel">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cadastrarBtn = document.getElementById("cadastrarBtn");
+
+      cadastrarBtn.addEventListener("click", (event) => {
+        event.preventDefault(); // Impede o formulário de ser enviado da forma tradicional
+        cadastrarEmpresa();
+      });
+    });
+
+    function cadastrarEmpresa() {
+      // Captura os valores dos campos do formulário
+      const nomeFantasia = document.getElementById("nomeFantasia").value;
+      const razaoSocial = document.getElementById("razaoSocial").value;
+      const cnpj = document.getElementById("cnpj").value;
+      const inscricaoEstadual =
+        document.getElementById("inscricaoEstadual").value;
+      const email = document.getElementById("email").value;
+      const dataAbertura = document.getElementById("dataAbertura").value;
+      const cep = document.getElementById("cep").value;
+      const numero = document.getElementById("numero").value;
+      const bairro = document.getElementById("bairro").value;
+      const rua = document.getElementById("rua").value;
+      const senha = document.getElementById("senha").value;
+
+      // Captura os tipos de transporte selecionados
+      const tiposTransporte = Array.from(
+        document.querySelectorAll('input[name="transporte"]:checked')
+      ).map((checkbox) => checkbox.value);
+
+      // Cria o objeto de nova empresa
+      const novaEmpresa = {
+        nomeFantasia: nomeFantasia,
+        razSocial: razaoSocial,
+        cnpj: cnpj,
+        ie: inscricaoEstadual,
+        email: email,
+        abertura: dataAbertura,
+        cep: cep,
+        endEmpresa: `${rua}, ${numero} - ${bairro}`,
+        tipTransporte: tiposTransporte.join(", "), // Transforma a lista em string
+        senhaEmpresa: senha,
+      };
+
+      // Faz a requisição POST
+      fetch("http://localhost:8000/api/empresas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(novaEmpresa),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Erro ao cadastrar empresa");
+          }
+        })
+        .then((data) => {
+          alert("Empresa cadastrada com sucesso!");
+          console.log("Resposta da API:", data);
+        })
+        .catch((error) => {
+          alert("Erro ao cadastrar empresa");
+          console.error("Erro:", error);
+        });
+    }
+  </script>
+</html>

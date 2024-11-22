@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Administradores</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Cadastro de Administradores</h1>
+        <div class="menu">
+          <ul>
+            <li><a href="principal.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastrar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form">
+          <label>Nome:</label>
+          <input type="text" placeholder="Digite o nome" />
+          <label>CPF:</label>
+          <input type="text" placeholder="Digite o CPF" />
+          <label>Data de Nascimento:</label>
+          <input type="date" />
+          <label>Data de Cadastro:</label>
+          <input type="date" />
+          <label>Login:</label>
+          <input type="text" placeholder="Digite o login" />
+          <label>Senha:</label>
+          <input type="password" placeholder="Digite a senha" />
+          <button>Cadastrar</button>
+        </div>
+        <div class="filters">
+          <label>Nome:</label>
+          <input type="text" placeholder="Filtrar por nome" />
+          <label>Data:</label>
+          <input type="date" />
+          <label>Número:</label>
+          <input type="number" placeholder="Filtrar por número" />
+          <button>Aplicar Filtro</button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Nome</th>
+            <th>Login</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20/11/2024</td>
+            <td>João Silva</td>
+            <td>joaosilva</td>
+            <td class="table-actions">
+              <button class="edit">Editar</button>
+              <button class="remove">Remover</button>
+            </td>
+          </tr>
+          <!-- Mais linhas -->
+        </tbody>
+      </table>
+      <div class="pagination">
+        <button>&lt;</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>&gt;</button>
+      </div>
+    </div>
+  </body>
+</html>

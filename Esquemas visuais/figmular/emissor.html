@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emissor de CT-e</title>
+    <link rel="stylesheet" href="definitivo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">CTe Express</div>
+        <div class="title">Emissor</div>
+        <div class="menu">
+          <button>Início</button>
+          <button>Sobre</button>
+          <button>Login</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="form-section">
+          <nav class="tabs">
+            <ul>
+              <li><a href="emissor.html">Emitir</a></li>
+              <li><a href="emitidos.html">Emitidos</a></li>
+            </ul>
+          </nav>
+          <form>
+            <h2>Dados do CT-e</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="cfop">CFOP</label>
+                <input type="text" id="cfop" placeholder="Digite CFOP" />
+              </div>
+              <div class="form-group">
+                <label for="tipo-servico">Tipo Serviço</label>
+                <select id="tipo-servico">
+                  <option>Selecione o tipo de serviço</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="forma-emissao">Forma Emissão</label>
+                <select id="forma-emissao">
+                  <option>Selecione a forma de emissão</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="valor-cte">Valor CT-e</label>
+                <input
+                  type="text"
+                  id="valor-cte"
+                  placeholder="Insira o valor" />
+              </div>
+              <div class="form-group">
+                <label for="finalidade-emissao">Finalidade Emissão</label>
+                <select id="finalidade-emissao">
+                  <option>Selecione a finalidade</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="forma-pagamento">Forma Pagamento</label>
+                <div>
+                  <input type="radio" id="pago" name="forma-pagamento" />
+                  <label for="pago">Pago</label>
+                  <input type="radio" id="a-pagar" name="forma-pagamento" />
+                  <label for="a-pagar">A pagar</label>
+                  <input type="radio" id="outro" name="forma-pagamento" />
+                  <label for="outro">Outro</label>
+                </div>
+              </div>
+            </div>
+
+            <h2>Localidades</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="local-cte">Local Emissão do CT-e</label>
+                <input type="text" id="local-cte" placeholder="UF" />
+              </div>
+              <div class="form-group">
+                <label for="inicio-prestacao">Local Início da Prestação</label>
+                <input type="text" id="inicio-prestacao" placeholder="UF" />
+              </div>
+              <div class="form-group">
+                <label for="fim-prestacao">Local Final da Prestação</label>
+                <input type="text" id="fim-prestacao" placeholder="UF" />
+              </div>
+            </div>
+
+            <h2>Remetente</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="remetente-nome">Nome</label>
+                <input type="text" id="remetente-nome" />
+              </div>
+              <div class="form-group">
+                <label for="remetente-endereco">Endereço</label>
+                <input type="text" id="remetente-endereco" />
+              </div>
+              <div class="form-group">
+                <label for="remetente-cnpj">CNPJ/CPF</label>
+                <input type="text" id="remetente-cnpj" />
+              </div>
+              <div class="form-group">
+                <label for="remetente-uf">UF</label>
+                <input type="text" id="remetente-uf" />
+              </div>
+              <div class="form-group">
+                <label for="remetente-cep">CEP</label>
+                <input type="text" id="remetente-cep" />
+              </div>
+            </div>
+
+            <h2>Destinatário</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="destinatario-nome">Nome</label>
+                <input type="text" id="destinatario-nome" />
+              </div>
+              <div class="form-group">
+                <label for="destinatario-endereco">Endereço</label>
+                <input type="text" id="destinatario-endereco" />
+              </div>
+              <div class="form-group">
+                <label for="destinatario-cnpj">CNPJ/CPF</label>
+                <input type="text" id="destinatario-cnpj" />
+              </div>
+              <div class="form-group">
+                <label for="destinatario-uf">UF</label>
+                <input type="text" id="destinatario-uf" />
+              </div>
+              <div class="form-group">
+                <label for="destinatario-cep">CEP</label>
+                <input type="text" id="destinatario-cep" />
+              </div>
+            </div>
+
+            <h2>Tomador do CT-e</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="tomador-nome">Nome</label>
+                <input type="text" id="tomador-nome" />
+              </div>
+              <div class="form-group">
+                <label for="tomador-endereco">Endereço</label>
+                <input type="text" id="tomador-endereco" />
+              </div>
+              <div class="form-group">
+                <label for="tomador-uf">UF</label>
+                <input type="text" id="tomador-uf" />
+              </div>
+              <div class="form-group">
+                <label for="tomador-cep">CEP</label>
+                <input type="text" id="tomador-cep" />
+              </div>
+            </div>
+
+            <h2>Produtos Transportados</h2>
+            <div class="grid-container">
+              <div class="form-group">
+                <label for="produto">Produto Predominante</label>
+                <input type="text" id="produto" />
+              </div>
+              <div class="form-group">
+                <label for="valor-carga">Valor da Carga</label>
+                <input type="text" id="valor-carga" />
+              </div>
+              <div class="form-group">
+                <label for="peso-carga">Peso da Carga</label>
+                <input type="text" id="peso-carga" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

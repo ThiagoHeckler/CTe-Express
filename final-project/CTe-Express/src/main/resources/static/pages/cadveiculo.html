@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Veículos</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <!-- Botão para abrir o popup -->
+    <button class="open-popup-btn" onclick="openPopup()">
+      Abrir Formulário
+    </button>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup">
+        <div class="popup-header">
+          <img src="https://via.placeholder.com/40" alt="Logo" />
+          <h2>Cadastro de Veículos</h2>
+        </div>
+        <div class="popup-form">
+          <label for="placa">Placa:</label>
+          <input type="text" id="placa" placeholder="Digite a placa" />
+
+          <label for="modelo">Modelo:</label>
+          <input type="text" id="modelo" placeholder="Digite o modelo" />
+
+          <label for="marca">Marca:</label>
+          <input type="text" id="marca" placeholder="Digite a marca" />
+
+          <label for="anoFab">Ano Fabricação:</label>
+          <input
+            type="number"
+            id="anoFab"
+            placeholder="Digite o ano de fabricação" />
+
+          <label for="dataAquisicao">Data Aquisição:</label>
+          <input type="date" id="dataAquisicao" />
+
+          <label for="kmCorridos">KM Corrido:</label>
+          <input
+            type="number"
+            id="kmCorridos"
+            placeholder="Digite o KM corrido" />
+
+          <label for="chassi">Chassi:</label>
+          <input type="text" id="chassi" placeholder="Digite o chassi" />
+
+          <div class="popup-buttons">
+            <button class="submit">Cadastrar</button>
+            <button class="cancel" onclick="closePopup()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Função para abrir o popup
+      function openPopup() {
+        document.getElementById("popupOverlay").classList.add("active");
+      }
+
+      // Função para fechar o popup
+      function closePopup() {
+        document.getElementById("popupOverlay").classList.remove("active");
+      }
+    </script>
+  </body>
+</html>

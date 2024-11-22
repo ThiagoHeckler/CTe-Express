@@ -1,0 +1,319 @@
+body {
+  background-color: #2e2e2e;
+}
+/* Reset básico para remover margens e paddings padrões */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+button,
+input,
+select {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Container geral da página */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Cabeçalho */
+.header,
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3f51b5;
+  color: #ffffff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}
+
+.header .logo,
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+}
+
+.menu button,
+.menu ul li a {
+  background: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+.menu ul {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+}
+
+/* Layout do formulário */
+.form-section {
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.form-section h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Botões */
+.btn-submit {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+/* Estilo das tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #3f51b5;
+  color: white;
+}
+
+/* Paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:hover {
+  background-color: #283593;
+}
+
+/* Estilos adicionais para a página de login */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #eceff1;
+}
+
+.login-header {
+  margin-bottom: 20px;
+}
+
+.login-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Botões específicos de login */
+.login-content .buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.login-content button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-content .confirm {
+  background-color: #4caf50;
+  color: white;
+}
+
+.login-content .cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #3f51b5;
+  color: white;
+  padding: 15px;
+  height: 100vh;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #283593;
+}
+
+/* Popup */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 1000;
+}
+
+#popup .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+#popup button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#popup .confirm {
+  background-color: #4caf50;
+  color: white;
+}
+
+#popup .cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+}

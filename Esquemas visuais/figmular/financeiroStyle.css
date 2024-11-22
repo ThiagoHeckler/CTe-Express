@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #ffa34d;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 1.2em;
+}
+
+.menu button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ff7300;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.menu button:hover {
+  background-color: #ff5700;
+}
+
+main {
+  padding: 20px;
+}
+
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.lancamento-despesas,
+.contas {
+  background-color: #ffd9b3;
+  padding: 20px;
+  border-radius: 10px;
+  width: 48%;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group button {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.tabela-despesas,
+.tabela-contas {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

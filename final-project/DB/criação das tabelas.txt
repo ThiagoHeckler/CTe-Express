@@ -1,0 +1,257 @@
+CREATE TABLE adiministradores (
+  codadmin     SERIAL NOT NULL, 
+  cpfadmin     varchar(14) NOT NULL UNIQUE, 
+  nomeadmin    varchar(100) NOT NULL, 
+  loginadmin   varchar(50) NOT NULL, 
+  senhadmin    varchar(50) NOT NULL, 
+  nascimento   date NOT NULL, 
+  datacadadmin date NOT NULL, 
+  codempresa   int4, 
+  PRIMARY KEY (codadmin));
+COMMENT ON TABLE adiministradores IS 'Tabela dos adiministradores';
+COMMENT ON COLUMN adiministradores.codadmin IS 'Codigo de identificação do adm';
+COMMENT ON COLUMN adiministradores.cpfadmin IS 'CPF do administrador';
+COMMENT ON COLUMN adiministradores.nomeadmin IS 'Nome do administrador';
+COMMENT ON COLUMN adiministradores.loginadmin IS 'Login do administrador';
+COMMENT ON COLUMN adiministradores.senhadmin IS 'Senha do administrador';
+COMMENT ON COLUMN adiministradores.nascimento IS 'Data de nascimento do administrador';
+COMMENT ON COLUMN adiministradores.datacadadmin IS 'Data de cadastro do administrador';
+CREATE TABLE compras (
+  codcompra      SERIAL NOT NULL, 
+  chavecompra    varchar(44) NOT NULL UNIQUE, 
+  valorcompra    numeric(10, 2) NOT NULL, 
+  emitentecompra varchar(100) NOT NULL, 
+  datacompra     date NOT NULL, 
+  codempresa     int4, 
+  PRIMARY KEY (codcompra));
+COMMENT ON TABLE compras IS 'Tabela de compras da empresa';
+COMMENT ON COLUMN compras.codcompra IS 'Código de identificação da compra';
+COMMENT ON COLUMN compras.chavecompra IS 'Chave de acesso a nota de compra';
+COMMENT ON COLUMN compras.valorcompra IS 'Valor da compra';
+COMMENT ON COLUMN compras.emitentecompra IS 'Qual foi a empresa que você adquiriu este produto';
+COMMENT ON COLUMN compras.datacompra IS 'A data da compra do produto';
+CREATE TABLE cte (
+  codcte         SERIAL NOT NULL, 
+  cfop           varchar(4) NOT NULL, 
+  tiposerv       varchar(50) NOT NULL, 
+  formaemissao   varchar(50) NOT NULL, 
+  valor          numeric(10, 2) NOT NULL, 
+  finalidade     varchar(50) NOT NULL, 
+  serie          numeric(3, 0) NOT NULL, 
+  numero         int4 NOT NULL, 
+  modelo         int4 NOT NULL, 
+  formapagamento varchar(10) NOT NULL, 
+  chavenfe       varchar(44) NOT NULL, 
+  emissaouf      varchar(2) NOT NULL, 
+  emissaomuni    varchar(70) NOT NULL, 
+  iniciouf       varchar(2) NOT NULL, 
+  iniciomuni     varchar(70) NOT NULL, 
+  finaluf        varchar(2) NOT NULL, 
+  finalmuni      varchar(70) NOT NULL, 
+  prodpredo      varchar(100) NOT NULL, 
+  valorcarga     numeric(12, 2) NOT NULL, 
+  pesocarga      numeric(9, 2) NOT NULL, 
+  tipopeso       varchar(4) NOT NULL, 
+  quantproduto   numeric(11, 2) NOT NULL, 
+  classtribut    varchar(200) NOT NULL, 
+  icms           numeric(11, 2) NOT NULL, 
+  codempresa     int4, 
+  placaveic      varchar(7), 
+  codreme        int4, 
+  codtomador     int4, 
+  coddest        int4, 
+  codveiculo     int4 NOT NULL, 
+  PRIMARY KEY (codcte));
+COMMENT ON TABLE cte IS 'Tabela do CTE';
+COMMENT ON COLUMN cte.codcte IS 'Codigo de identificação do CTE';
+COMMENT ON COLUMN cte.cfop IS 'CFOP do CTE - um codigo que identifica a finalidade do CTE';
+COMMENT ON COLUMN cte.tiposerv IS 'Tipo de serviço do CTe';
+COMMENT ON COLUMN cte.formaemissao IS 'Insere se a forma do CTe é normal ou alguma outra especifica';
+COMMENT ON COLUMN cte.valor IS 'Valor do transporte';
+COMMENT ON COLUMN cte.finalidade IS 'Qual a finalidade do CTe';
+COMMENT ON COLUMN cte.serie IS 'Série de sequencia das notas';
+COMMENT ON COLUMN cte.numero IS 'Numero do Ct-e';
+COMMENT ON COLUMN cte.modelo IS 'Modelo do documento';
+COMMENT ON COLUMN cte.formapagamento IS 'Forma de pagamento do CTE';
+COMMENT ON COLUMN cte.chavenfe IS 'A chave da NFe que referencia no CTe';
+COMMENT ON COLUMN cte.emissaouf IS 'Localidade UF da emissão da nota';
+COMMENT ON COLUMN cte.emissaomuni IS 'Localidade da emissão municipio';
+COMMENT ON COLUMN cte.iniciouf IS 'Localidade do inicio da prestação de servico (CTE) UF';
+COMMENT ON COLUMN cte.iniciomuni IS 'Localidade do inicio da prestação de serviço (CTE) municipio';
+COMMENT ON COLUMN cte.finaluf IS 'Localidade final da prestação de serviço (CTE) UF';
+COMMENT ON COLUMN cte.finalmuni IS 'Localidade final da prestação de serviço (CTE) municipio';
+COMMENT ON COLUMN cte.prodpredo IS 'Produto predominante na carga';
+COMMENT ON COLUMN cte.valorcarga IS 'Valor da carga transportada';
+COMMENT ON COLUMN cte.pesocarga IS 'Peso da carga transportada';
+COMMENT ON COLUMN cte.tipopeso IS 'Seleciona o tipo de pesom da craga';
+COMMENT ON COLUMN cte.quantproduto IS 'Quantidade de produto transportado';
+COMMENT ON COLUMN cte.classtribut IS 'Classificação tributária';
+COMMENT ON COLUMN cte.icms IS 'Valor do ICMS do produto';
+CREATE TABLE destinatario (
+  coddest  SERIAL NOT NULL, 
+  nomedest varchar(100) NOT NULL, 
+  enddest  varchar(150) NOT NULL, 
+  munidest varchar(70) NOT NULL, 
+  cpfdest  varchar(14), 
+  cnpjdest varchar(18), 
+  pedest   varchar(70) NOT NULL, 
+  iedest   int4, 
+  cepdest  varchar(8) NOT NULL, 
+  fonedest varchar(15), 
+  PRIMARY KEY (coddest));
+COMMENT ON TABLE destinatario IS 'Tabela do destinatario do CTE';
+COMMENT ON COLUMN destinatario.coddest IS 'Codigo de identificação do destinatário';
+COMMENT ON COLUMN destinatario.nomedest IS 'Nome do destinatário';
+COMMENT ON COLUMN destinatario.enddest IS 'Endereço do destinatário';
+COMMENT ON COLUMN destinatario.munidest IS 'Municipio do destinatário';
+COMMENT ON COLUMN destinatario.cpfdest IS 'CPF do destinatário';
+COMMENT ON COLUMN destinatario.cnpjdest IS 'CNPJ do destinatário';
+COMMENT ON COLUMN destinatario.pedest IS 'UF: PE destinatário';
+COMMENT ON COLUMN destinatario.iedest IS 'Inscrição estadual do destinatário';
+COMMENT ON COLUMN destinatario.cepdest IS 'CEP do destinatário';
+COMMENT ON COLUMN destinatario.fonedest IS 'Telefone do destinatário';
+CREATE TABLE empresa (
+  codempresa    SERIAL NOT NULL, 
+  cnpj          varchar(18) NOT NULL UNIQUE, 
+  nomefantasia  varchar(150) NOT NULL, 
+  cep           varchar(8) NOT NULL, 
+  endempresa    varchar(150) NOT NULL, 
+  abertura      date NOT NULL, 
+  email         varchar(50), 
+  razsocial     varchar(150) NOT NULL, 
+  ie            varchar(9) NOT NULL, 
+  tiptransporte varchar(20) NOT NULL, 
+  senhaempresa  varchar(50) NOT NULL, 
+  PRIMARY KEY (codempresa));
+COMMENT ON TABLE empresa IS 'Entidade da empresa, aqui contem os dados da empresa ao qual emite os CT-e';
+COMMENT ON COLUMN empresa.codempresa IS 'Codigo de identificação da empresa';
+COMMENT ON COLUMN empresa.cnpj IS 'CNPJ da empresa';
+COMMENT ON COLUMN empresa.nomefantasia IS 'Nome da empresa emissora do CT-e';
+COMMENT ON COLUMN empresa.cep IS 'CEP da empresa';
+COMMENT ON COLUMN empresa.endempresa IS 'Endereço da empresa, rua, bairro, numero';
+COMMENT ON COLUMN empresa.abertura IS 'Data de abertura da empresa';
+COMMENT ON COLUMN empresa.email IS 'E-mail da empresa emissora';
+COMMENT ON COLUMN empresa.razsocial IS 'razão social da empresa';
+COMMENT ON COLUMN empresa.ie IS 'Inscrição estadual da empresa';
+COMMENT ON COLUMN empresa.tiptransporte IS 'Tipo de transporte da empresa';
+COMMENT ON COLUMN empresa.senhaempresa IS 'Senha de acesso da empresa';
+CREATE TABLE financeiro (
+  codfinanceiro       SERIAL NOT NULL, 
+  contafinanceiro     varchar(50) NOT NULL, 
+  datafinanceiro      date NOT NULL, 
+  valorfinanceiro     numeric(10, 2) NOT NULL, 
+  descricaofinanceiro varchar(150), 
+  codempresa          int4, 
+  PRIMARY KEY (codfinanceiro));
+COMMENT ON TABLE financeiro IS 'Tabela da area financeira da empresa';
+COMMENT ON COLUMN financeiro.codfinanceiro IS 'Codigo de identyificação do lançamento financeiro';
+COMMENT ON COLUMN financeiro.contafinanceiro IS 'Conta do banco';
+COMMENT ON COLUMN financeiro.datafinanceiro IS 'Data que foi feito o lançamento financeiro';
+COMMENT ON COLUMN financeiro.valorfinanceiro IS 'Valor do lançamento financeiro';
+COMMENT ON COLUMN financeiro.descricaofinanceiro IS 'Descrição do lançamento financeiro';
+CREATE TABLE motorista (
+  codmotorista     SERIAL NOT NULL, 
+  cpfmotorista     varchar(14) NOT NULL UNIQUE, 
+  cnh              varchar(10) NOT NULL UNIQUE, 
+  nomemotorista    varchar(100) NOT NULL, 
+  datacadmotorista date NOT NULL, 
+  datanasmotorista date NOT NULL, 
+  loginmotorista   varchar(50), 
+  senhamotorista   varchar(50), 
+  codempresa       int4, 
+  PRIMARY KEY (codmotorista));
+COMMENT ON COLUMN motorista.codmotorista IS 'Codigo de identificação do motorista';
+COMMENT ON COLUMN motorista.cpfmotorista IS 'CPF do motorista';
+COMMENT ON COLUMN motorista.cnh IS 'Número da CNH do motorista';
+COMMENT ON COLUMN motorista.nomemotorista IS 'Nome do motorista';
+COMMENT ON COLUMN motorista.datacadmotorista IS 'Data de cadastro do motorista no sistema';
+COMMENT ON COLUMN motorista.datanasmotorista IS 'Data de nascimento do motorista';
+COMMENT ON COLUMN motorista.loginmotorista IS 'Login do motorista no sistema';
+COMMENT ON COLUMN motorista.senhamotorista IS 'Senha de acesso ao sistema do motorista';
+CREATE TABLE remetente (
+  codreme  SERIAL NOT NULL, 
+  nomereme varchar(100) NOT NULL, 
+  endreme  varchar(150) NOT NULL, 
+  munireme varchar(70) NOT NULL, 
+  cpfreme  varchar(14), 
+  cnpjreme varchar(18), 
+  pereme   varchar(70) NOT NULL, 
+  iereme   int4, 
+  cepreme  varchar(8) NOT NULL, 
+  fonereme varchar(15), 
+  PRIMARY KEY (codreme));
+COMMENT ON TABLE remetente IS 'Tabela do Remetente';
+COMMENT ON COLUMN remetente.codreme IS 'Código de identificação do remetente';
+COMMENT ON COLUMN remetente.nomereme IS 'Nome do remetente';
+COMMENT ON COLUMN remetente.endreme IS 'Endereço do remetente';
+COMMENT ON COLUMN remetente.munireme IS 'Municipio do remetente';
+COMMENT ON COLUMN remetente.cpfreme IS 'CPF do remetente';
+COMMENT ON COLUMN remetente.cnpjreme IS 'CNPJ do remetente';
+COMMENT ON COLUMN remetente.pereme IS 'PE: UF do remetente';
+COMMENT ON COLUMN remetente.iereme IS 'Inscrição estadual do remetente';
+COMMENT ON COLUMN remetente.cepreme IS 'CEP do remetente';
+COMMENT ON COLUMN remetente.fonereme IS 'Telefone do remetente';
+CREATE TABLE telefone (
+  codtelefone SERIAL NOT NULL, 
+  telefone    varchar(18) NOT NULL, 
+  codempresa  int4, 
+  PRIMARY KEY (codtelefone));
+COMMENT ON TABLE telefone IS 'Entidade telefone para caso a empresa tenha varios telefones';
+COMMENT ON COLUMN telefone.codtelefone IS 'Codigo de identificação do telefone';
+COMMENT ON COLUMN telefone.telefone IS 'Telefone da empresa';
+CREATE TABLE tomador (
+  codtomador  SERIAL NOT NULL, 
+  nometomador varchar(150) NOT NULL, 
+  endtomador  varchar(150) NOT NULL, 
+  cpftomador  varchar(14), 
+  cnpjtomador varchar(18), 
+  ietomador   int4, 
+  munitomador varchar(100) NOT NULL, 
+  fonetomador varchar(18), 
+  petomador   varchar(70) NOT NULL, 
+  ceptomador  varchar(8) NOT NULL, 
+  PRIMARY KEY (codtomador));
+COMMENT ON TABLE tomador IS 'Tabela do tomador do serviço';
+COMMENT ON COLUMN tomador.codtomador IS 'Código de identificação do tomador';
+COMMENT ON COLUMN tomador.nometomador IS 'Nome do tomador do CTE';
+COMMENT ON COLUMN tomador.endtomador IS 'Endereço do tomador do CTE';
+COMMENT ON COLUMN tomador.cpftomador IS 'CPF do tomador do CTE';
+COMMENT ON COLUMN tomador.cnpjtomador IS 'CNPJ do tomador do CTE';
+COMMENT ON COLUMN tomador.ietomador IS 'Inscrição estadual do tomador do CTE';
+COMMENT ON COLUMN tomador.munitomador IS 'Municipio do tomador do CTE';
+COMMENT ON COLUMN tomador.fonetomador IS 'Telefone do tomador do CTE';
+COMMENT ON COLUMN tomador.petomador IS 'PE: UF do tomador do CTE';
+COMMENT ON COLUMN tomador.ceptomador IS 'CEP do tomador do CTE';
+CREATE TABLE veiculos (
+  codveiculo   SERIAL NOT NULL, 
+  placaveic    varchar(7) NOT NULL, 
+  modelo       varchar(50) NOT NULL, 
+  marca        varchar(20) NOT NULL, 
+  anofab       date NOT NULL, 
+  dataqui      date NOT NULL, 
+  kmcorrido    numeric(10, 3) NOT NULL, 
+  chassi       varchar(17), 
+  codempresa   int4, 
+  codmotorista int4, 
+  PRIMARY KEY (codveiculo));
+COMMENT ON TABLE veiculos IS 'Entidade dos veiculos da empresa';
+COMMENT ON COLUMN veiculos.codveiculo IS 'Codigo de identificação do veiculo';
+COMMENT ON COLUMN veiculos.placaveic IS 'Placa do caminhão';
+COMMENT ON COLUMN veiculos.modelo IS 'Modelo do veiculo';
+COMMENT ON COLUMN veiculos.marca IS 'Marca do veiculo';
+COMMENT ON COLUMN veiculos.anofab IS 'Ano de fabricação do veiculo';
+COMMENT ON COLUMN veiculos.dataqui IS 'Data de aquisição do veiculo';
+COMMENT ON COLUMN veiculos.kmcorrido IS 'Quantos quilometros o veiculo andou';
+COMMENT ON COLUMN veiculos.chassi IS 'Chassi do veiculo caso a empresa tenha';
+ALTER TABLE telefone ADD CONSTRAINT FKtelefone550922 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE cte ADD CONSTRAINT FKcte820481 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE veiculos ADD CONSTRAINT FKveiculos912931 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE motorista ADD CONSTRAINT FKmotorista33898 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE adiministradores ADD CONSTRAINT FKadiministr751206 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE compras ADD CONSTRAINT FKcompras418346 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE financeiro ADD CONSTRAINT FKfinanceiro252852 FOREIGN KEY (codempresa) REFERENCES empresa (codempresa);
+ALTER TABLE cte ADD CONSTRAINT FKcte408041 FOREIGN KEY (codveiculo) REFERENCES veiculos (codveiculo);
+ALTER TABLE veiculos ADD CONSTRAINT FKveiculos112854 FOREIGN KEY (codmotorista) REFERENCES motorista (codmotorista);
+ALTER TABLE cte ADD CONSTRAINT FKcte147787 FOREIGN KEY (codreme) REFERENCES remetente (codreme);
+ALTER TABLE cte ADD CONSTRAINT FKcte918383 FOREIGN KEY (codtomador) REFERENCES tomador (codtomador);
+ALTER TABLE cte ADD CONSTRAINT FKcte916820 FOREIGN KEY (coddest) REFERENCES destinatario (coddest);

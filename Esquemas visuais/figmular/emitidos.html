@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emitidos</title>
+    <link rel="stylesheet" href="definitivo.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">CTe Express</div>
+      <div class="menu">
+        <button>Início</button>
+        <button>Sobre</button>
+        <button>Login</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <nav class="tabs">
+        <ul>
+          <li><a href="emissor.html">Emitir</a></li>
+          <li><a href="emitidos.html">Emitidos</a></li>
+        </ul>
+      </nav>
+
+      <div class="filters">
+        <h3>Filtros</h3>
+        <label for="numero">Número</label>
+        <input type="text" id="numero" placeholder="Número" />
+
+        <label for="data">Data</label>
+        <input type="date" id="data-inicio" /> a
+        <input type="date" id="data-fim" />
+
+        <label for="chave">Chave</label>
+        <input type="text" id="chave" placeholder="Chave" />
+
+        <div class="buttons">
+          <button class="filter-btn">Aplicar Filtro</button>
+          <button class="export-btn">Gerar Planilha</button>
+        </div>
+      </div>
+
+      <table class="results">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Chave</th>
+            <th>Emitente</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1234</td>
+            <td>123456789012345678901234567890</td>
+            <td>Emitente X</td>
+            <td>R$ 500,00</td>
+            <td>20/11/2024</td>
+            <td><button class="pdf-btn">PDF</button></td>
+          </tr>
+          <!-- Adicionar mais linhas conforme necessário -->
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button>&lt;</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>...</button>
+        <button>&gt;</button>
+      </div>
+    </div>
+  </body>
+</html>

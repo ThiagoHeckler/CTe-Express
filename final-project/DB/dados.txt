@@ -1,0 +1,69 @@
+INSERT INTO adiministradores (cpfadmin, nomeadmin, loginadmin, senhadmin, nascimento, datacadadmin, codempresa) 
+VALUES 
+  ('12345678901', 'João Silva', 'joaosilva', 'senha123', '1985-02-15', '2024-11-22', 1),
+  ('98765432100', 'Maria Oliveira', 'mariaoliveira', 'senha456', '1990-06-20', '2024-11-22', 2),
+  ('11223344556', 'Carlos Souza', 'carlossouza', 'senha789', '1982-11-10', '2024-11-22', 3);
+
+ 
+ INSERT INTO compras (chavecompra, valorcompra, emitentecompra, datacompra, codempresa) 
+VALUES 
+  ('ABC123XYZ', 500.00, 'Fornecedor A', '2024-11-15', 1),
+  ('DEF456XYZ', 300.00, 'Fornecedor B', '2024-11-16', 2),
+  ('GHI789XYZ', 1500.00, 'Fornecedor C', '2024-11-17', 3);
+
+ 
+ INSERT INTO cte (cfop, tiposerv, formaemissao, valor, finalidade, serie, numero, modelo, formapagamento, chavenfe, emissaouf, emissaomuni, iniciouf, iniciomuni, finaluf, finalmuni, prodpredo, valorcarga, pesocarga, tipopeso, quantproduto, classtribut, icms, codempresa, placaveic, codveiculo) 
+VALUES 
+  ('5101', 'Transporte de Carga', 'Normal', 1000.00, 'Remessa', 1, 10001, 57, 'À vista', 'NFE123456789', 'SP', 'São Paulo', 'RJ', 'Rio de Janeiro', 'SP', 'São Paulo', 'Cargas gerais', 2000.00, 1000.50, 'KG', 500.00, 'ICMS 12%', 120.00, 1, 'ABC1234', 1),
+  ('6102', 'Transporte de Carga', 'Normal', 800.00, 'Devolução', 1, 10002, 57, 'Parcelado', 'NFE234567890', 'MG', 'Belo Horizonte', 'ES', 'Vitória', 'MG', 'Minas Gerais', 'Peças de veículos', 1000.00, 500.00, 'KG', 300.00, 'ICMS 18%', 144.00, 2, 'DEF5678', 2),
+  ('5201', 'Transporte de Carga', 'Normal', 1200.00, 'Venda', 1, 10003, 57, 'À vista', 'NFE345678901', 'PR', 'Curitiba', 'SC', 'Florianópolis', 'PR', 'Paraná', 'Materiais de construção', 2500.00, 1200.00, 'KG', 700.00, 'ICMS 10%', 120.00, 3, 'GHI9101', 3);
+
+ 
+ INSERT INTO destinatario (nomedest, enddest, munidest, cpfdest, cnpjdest, pedest, iedest, cepdest, fonedest) 
+VALUES 
+  ('Lucas Pereira', 'Rua 1, nº 10', 'São Paulo', '12345678901', NULL, 'SP', 123456789, '01000-000', '1122334455'),
+  ('Ana Souza', 'Avenida Brasil, nº 50', 'Rio de Janeiro', '98765432100', NULL, 'RJ', 987654321, '20000-000', '1122336677'),
+  ('Carlos Lima', 'Rua das Flores, nº 30', 'Belo Horizonte', NULL, '12345678000199', 'MG', 456789012, '30000-000', '1122338899');
+
+ 
+ INSERT INTO empresa (cnpj, nomefantasia, cep, endempresa, abertura, email, razsocial, ie, tiptransporte, senhaempresa) 
+VALUES 
+  ('12345678000195', 'Transportadora XYZ', '01000-000', 'Rua A, nº 10', '2005-03-15', 'contato@xyz.com', 'XYZ Transportes Ltda', '123456789', 'Rodoviário', 'senhaempresa1'),
+  ('98765432000160', 'Logística AB', '20000-000', 'Avenida B, nº 50', '2010-06-20', 'contato@ablogistica.com', 'AB Logística Ltda', '987654321', 'Aquaviário', 'senhaempresa2'),
+  ('11223344000180', 'Carga Rápida', '30000-000', 'Rua C, nº 30', '2015-09-25', 'contato@cargarapida.com', 'Carga Rápida Ltda', '112233445', 'Rodoviário', 'senhaempresa3');
+
+ INSERT INTO financeiro (contafinanceiro, datafinanceiro, valorfinanceiro, descricaofinanceiro, codempresa)
+VALUES 
+  ('Conta Corrente 01', '2024-11-22', 1500.00, 'Pagamento de fornecedor', 1),
+  ('Conta Corrente 02', '2024-11-21', 750.00, 'Pagamento de salários', 2),
+  ('Conta Corrente 03', '2024-11-20', 1200.00, 'Compra de material', 3);
+
+ INSERT INTO motorista (cpfmotorista, cnh, nomemotorista, datacadmotorista, datanasmotorista, loginmotorista, senhamotorista, codempresa)
+VALUES 
+  ('12345678901', '1234567890', 'Carlos Silva', '2023-01-15', '1990-04-20', 'carlos123', 'senha123', 1),
+  ('98765432100', '9876543210', 'Ana Souza', '2023-05-10', '1985-11-30', 'ana456', 'senha456', 2),
+  ('11223344556', '1122334455', 'Pedro Lima', '2023-08-20', '1992-02-15', 'pedro789', 'senha789', 3);
+
+ INSERT INTO remetente (nomereme, endreme, munireme, cpfreme, cnpjreme, pereme, iereme, cepreme, fonereme)
+VALUES 
+  ('Empresa A', 'Rua 1, 123', 'Cidade A', '12345678901', NULL, 'PE', 123456789, '12345678', '1234567890'),
+  ('Empresa B', 'Avenida 2, 456', 'Cidade B', '98765432100', NULL, 'SP', 987654321, '98765479', '9876543210'),
+  ('Empresa C', 'Rua 3, 789', 'Cidade C', '11223344556', NULL, 'RJ', 112233445, '11223347', '1122334455');
+
+ INSERT INTO telefone (telefone, codempresa)
+VALUES 
+  ('(11) 98765-4321', 1),
+  ('(21) 99876-5432', 2),
+  ('(31) 91234-5678', 3);
+
+ INSERT INTO tomador (nometomador, endtomador, cpftomador, cnpjtomador, ietomador, munitomador, fonetomador, petomador, ceptomador)
+VALUES 
+  ('João Santos', 'Rua 10, 123', '12345678901', NULL, 123456789, 'Cidade X', '999999999', 'PE', '12345678'),
+  ('Maria Oliveira', 'Avenida 15, 456', '98765432100', NULL, 987654321, 'Cidade Y', '988888888', 'SP', '98765479'),
+  ('Lucas Pereira', 'Rua 20, 789', '11223344556', NULL, 112233445, 'Cidade Z', '977777777', 'RJ', '11223347');
+
+ INSERT INTO veiculos (placaveic, modelo, marca, anofab, dataqui, kmcorrido, chassi, codempresa, codmotorista)
+VALUES 
+  ('ABC-1234', 'Caminhão 1', 'Volvo', '2018-05-10', '2024-01-15', 100000, '1A2B3C4D5E6F7G8H9I', 1, 1),
+  ('XYZ-5678', 'Caminhão 2', 'Mercedes', '2020-08-20', '2024-02-25', 50000, '9J8K7L6M5N4O3P2Q1R', 2, 2),
+  ('LMN-1357', 'Caminhão 3', 'Scania', '2021-03-15', '2024-03-10', 25000, '2S3T4U5V6W7X8Y9Z0A', 3, 3);

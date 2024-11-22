@@ -1,0 +1,71 @@
+-- Relatório de Compras, incluindo dados da empresa
+CREATE VIEW vw_relatorio_compras AS
+SELECT 
+    c.codcompra, c.chavecompra, c.valorcompra, c.emitentecompra, c.datacompra, e.nomefantasia
+FROM 
+    compras c
+JOIN 
+    empresa e ON c.codempresa = e.codempresa;
+
+-- Relatório de CTE com detalhes do veiculo, motorista e empresa
+CREATE VIEW vw_relatorio_cte AS
+SELECT 
+    ct.codcte, ct.cfop, ct.tiposerv, ct.valor, ct.formapagamento, ct.chavenfe, v.placaveic, m.nomemotorista, e.nomefantasia
+FROM 
+    cte ct
+JOIN 
+    veiculos v ON ct.codveiculo = v.codveiculo
+JOIN 
+    motorista m ON v.codmotorista = m.codmotorista
+JOIN 
+    empresa e ON ct.codempresa = e.codempresa;
+
+   
+   
+   
+   -- Criação de usuários
+CREATE USER admin_user WITH PASSWORD 'senhaadmin';
+CREATE USER empresa_user WITH PASSWORD 'senhaempresa';
+
+-- Criação de roles (grupos)
+CREATE ROLE admin_role;
+CREATE ROLE empresa_role;
+
+-- Conceder privilégios
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO admin_role;
+GRANT SELECT ON TABLE empresa TO empresa_role;
+
+-- Conceder a roles aos usuários
+GRANT admin_role TO admin_user;
+GRANT empresa_role TO empresa_user;
+
+
+
+-- Gatilho para auditar inserções na tabela de CTE
+CREATE OR REPLACE FUNCTION audit_cte_insert() 
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO audit_log (action, table_name, record_id, old_values, new_values, change_date)
+    VALUES ('INSERT', 'cte', NEW.codcte, NULL, ROW(NEW.*), NOW());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_audit_cte_insert
+AFTER INSERT ON cte
+FOR EACH ROW EXECUTE FUNCTION audit_cte_insert();
+
+
+-- Adicionando índice na tabela de CTE para melhorar o desempenho de consultas frequentes
+CREATE INDEX idx_cte_chavenfe ON cte (chavenfe);
+
+-- Adicionando índice na tabela de compras para otimizar buscas pelo valor
+CREATE INDEX idx_compras_valor ON compras (valorcompra);
+
+
+
+-- Exemplo de comando de backup (via linha de comando)
+pg_dump -U postgres -h localhost -p 5432 -F c -b -v -f "C:\DEV\CTe-Express\DB" cteexpress
+
+-- Exemplo de comando de restore (via linha de comando)
+pg_restore -U usuario -d nome_do_banco -v "C:/DEV/CTe-Express/DB/backup_nome.bak"

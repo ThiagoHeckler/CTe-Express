@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatorios</title>
+    <link rel="stylesheet" href="definitivo.css" />
+  </head>
+  <body>
+    <button id="openPopup">Abrir Relatórios</button>
+
+    <div id="overlay"></div>
+    <div id="popup">
+      <h2>RELATÓRIOS</h2>
+      <div class="content">
+        <label for="report">RELATÓRIO</label>
+        <select id="report">
+          <option value="">Selecione</option>
+          <option value="relatorio1">Transportes</option>
+          <option value="relatorio2">Entradas</option>
+          <option value="relatorio3">Financeiro</option>
+          <option value="relatorio4">Motoristas</option>
+          <option value="relatorio5">Caminhões</option>
+          <option value="relatorio6">Consolidado</option>
+        </select>
+
+        <label for="startDate">DATA INICIAL</label>
+        <input type="date" id="startDate" />
+
+        <label for="endDate">DATA FINAL</label>
+        <input type="date" id="endDate" />
+
+        <div class="buttons">
+          <button class="confirm">CONFIRMAR</button>
+          <button class="cancel" id="closePopup">CANCELAR</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const openPopupButton = document.getElementById("openPopup");
+      const popup = document.getElementById("popup");
+      const overlay = document.getElementById("overlay");
+      const closePopupButton = document.getElementById("closePopup");
+
+      openPopupButton.addEventListener("click", () => {
+        popup.style.display = "block";
+        overlay.style.display = "block";
+      });
+
+      closePopupButton.addEventListener("click", () => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
+
+      overlay.addEventListener("click", () => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
