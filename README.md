@@ -1,5 +1,6 @@
  ### CTe-Express - Gerenciamento Completo para Empresas de Transporte 📦🚚  
-**Autor:**  Guilherme Galvani Morigi, Thiago Emanuel Correia Heckler e Anderson Carlos Dalla Costa
+**Autor:**  Guilherme Galvani Morigi, Thiago Emanuel Correia Heckler e Anderson Carlos Dalla Costa.
+
 **Disciplinas:** Banco de Dados II, Programação II e Engenharia de Software I  
 
 👋 **Bem-vindo ao CTe-Express!** 🚀  
