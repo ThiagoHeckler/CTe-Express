@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emitidos</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">CTe Express</div>
+      <div class="menu">
+          <ul>
+            <li><a href="principal.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastrar</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="content">
+      <nav class="menu">
+        <ul>
+          <li><a href="emissor.html">Emitir</a></li>
+          <li><a href="emitidos.html">Emitidos</a></li>
+        </ul>
+      </nav>
+
+      <div class="filters">
+        <h3>Filtros</h3>
+        <label for="numero">Número</label>
+        <input type="text" id="numero" placeholder="Número" />
+
+        <label for="data">Data</label>
+        <input type="date" id="data-inicio" /> a
+        <input type="date" id="data-fim" />
+
+        <label for="chave">Chave</label>
+        <input type="text" id="chave" placeholder="Chave" />
+
+        <div class="buttons">
+          <button class="filter-btn">Aplicar Filtro</button>
+          <button class="export-btn">Gerar Planilha</button>
+        </div>
+      </div>
+
+      <table class="results">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Modelo</th>
+            <th>Chave</th>
+            <th>Tipo de transporte</th>
+            <th>Valor</th>
+            <th>Destino</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-dados">
+            <!-- Dados da API vão aqui -->
+            
+        </tbody>
+            
+          
+          <!-- Adicionar mais linhas conforme necessário -->
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button>&lt;</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>...</button>
+        <button>&gt;</button>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+//script.js
+
+//URL da sua API
+const apiUrl = 'http://localhost:8080/api/cte'; // Substitua pela URL da sua API
+
+//Função para buscar dados da API e preencher a tabela
+async function carregarDados() {
+   try {
+       // Fazendo uma requisição GET para a API
+       const resposta = await fetch(apiUrl);
+       const dados = await resposta.json();
+
+       // Referência ao corpo da tabela
+       const tabela = document.getElementById('tabela-dados');
+
+       // Limpa o conteúdo da tabela
+       tabela.innerHTML = '';
+
+       // Itera sobre os dados recebidos e cria as linhas da tabela
+       dados.forEach(cte => {
+           const linha = document.createElement('tr');
+           linha.innerHTML = `
+               <td>${cte.numero}</td>
+               <td>${cte.modelo}</td>
+               <td>${cte.chaveNfe}</td>
+               <td>${cte.tipoServ}</td>
+               <td>R$ ${cte.valor}</td>
+               <td>${cte.finalMuni}</td>
+               <td><button id="generate-pdf">Baixar PDF</button></td>
+           `;
+           tabela.appendChild(linha);
+       });
+   } catch (erro) {
+       console.error('Erro ao carregar os dados da API:', erro);
+   }
+}
+
+//Chama a função para carregar os dados ao carregar a página
+window.onload = carregarDados;
+  </script>
+  <script>
+  document.getElementById('generate-pdf').addEventListener('click', async function () {
+	    const { jsPDF } = window.jspdf;
+	    const doc = new jsPDF();
+
+	    try {
+	        // Consumindo dados da API de CTe
+	        const cteData = await fetch('http://localhost:8080/api/cte')
+	            .then(response => response.json())
+	            .catch(error => console.error('Erro ao buscar dados do CTe:', error));
+
+	        // Consumindo dados da API de Empresas
+	        const empresaData = await fetch('http://localhost:8080/api/empresas')
+	            .then(response => response.json())
+	            .catch(error => console.error('Erro ao buscar dados da empresa:', error));
+
+	        // Verifica se os dados foram recebidos corretamente
+	        if (empresaData && cteData) {
+	            // Adicionando os dados do CTe no PDF
+	            doc.setFontSize(12);
+	            doc.text('CTe Número: ' + cteData.numero, 10, 10);
+	            doc.text('CFOP: ' + cteData.cfop, 10, 20);
+	            doc.text('Tipo de Serviço: ' + cteData.tipoServ, 10, 30);
+	            doc.text('Forma de Emissão: ' + cteData.formaEmissao, 10, 40);
+	            doc.text('Finalidade: ' + cteData.finalidade, 10, 50);
+	            doc.text('Valor da Carga: R$ ' + cteData.valorCarga, 10, 60);
+	            doc.text('Peso da Carga: ' + cteData.pesoCarga + ' ' + cteData.tipoPeso, 10, 70);
+	            doc.text('ICMS: R$ ' + cteData.icms, 10, 80);
+
+	            // Adicionando os dados da empresa no PDF
+	            doc.addPage();  // Cria uma nova página para os dados da empresa
+	            doc.text('Empresa: ' + empresaData.razSocial, 10, 10);
+	            doc.text('Nome Fantasia: ' + empresaData.nomeFantasia, 10, 20);
+	            doc.text('CNPJ: ' + empresaData.cnpj, 10, 30);
+	            doc.text('Endereço: ' + empresaData.endEmpresa, 10, 40);
+	            doc.text('CEP: ' + empresaData.cep, 10, 50);
+	            doc.text('Email: ' + empresaData.email, 10, 60);
+	            doc.text('Inscrição Estadual: ' + empresaData.ie, 10, 70);
+	            doc.text('Tipo de Transporte: ' + empresaData.tipTransporte, 10, 80);
+	            doc.text('Data de Abertura: ' + empresaData.abertura, 10, 90);
+
+	            // Gera o PDF e faz o download
+	            doc.save('cte-empresa.pdf');
+	        } else {
+	            alert('Erro ao obter dados para gerar o PDF');
+	        }
+	    } catch (error) {
+	        console.error('Erro ao gerar o PDF:', error);
+	    }
+	});
+
+  </script>
+  
+</html>
