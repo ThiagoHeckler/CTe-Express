@@ -1,0 +1,25 @@
+-- POLITICA DE CONTROLE DE ACESSO
+
+-- Criar as roles
+CREATE ROLE admin;
+CREATE ROLE empresa_user;
+CREATE ROLE motorista_user;
+
+-- Conceder permissões gerais para o administrador
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO admin;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO admin; -- Para sequências automáticas (SERIAL)
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO admin; -- Para todas as funções
+
+-- Conceder permissões específicas para empresa_user
+GRANT SELECT, INSERT, UPDATE ON TABLE empresa TO empresa_user;
+GRANT SELECT, INSERT, UPDATE ON TABLE telefone TO empresa_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO empresa_user; -- Permite usar as sequências (SERIAL)
+
+-- Conceder permissões específicas para motorista_user
+GRANT SELECT, INSERT, UPDATE ON TABLE motorista TO motorista_user;
+GRANT SELECT, INSERT, UPDATE ON TABLE veiculos TO motorista_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO motorista_user; -- Permite usar as sequências (SERIAL)
+
+
+-- Conceder permissões para o schema
+GRANT USAGE ON SCHEMA public TO empresa_user, motorista_user; -- Permite usar o schema public

@@ -1,0 +1,89 @@
+-- PROCEDURES
+
+-- Inserção de um novo administrador
+CREATE OR REPLACE PROCEDURE inserir_administrador(
+    cpf_admin VARCHAR,
+    nome_admin VARCHAR,
+    login_admin VARCHAR,
+    senha_admin VARCHAR,
+    nascimento DATE,
+    cod_empresa INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO administradores (cpfadmin, nomeadmin, loginadmin, senhadmin, nascimento, datacadadmin, codempresa)
+    VALUES (cpf_admin, nome_admin, login_admin, senha_admin, nascimento, CURRENT_DATE, cod_empresa);
+END;
+$$;
+
+-- Relatório de Compras por Empresa
+CREATE OR REPLACE PROCEDURE gerar_relatorio_compras(cod_empresa INT)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    compras_cursor REFCURSOR;
+    compra_row RECORD;
+BEGIN
+    -- Abrir o cursor para o relatório de compras
+    OPEN compras_cursor FOR
+        SELECT codcompra, chavecompra, valorcompra, datacompra
+        FROM compras
+        WHERE codempresa = cod_empresa
+        ORDER BY datacompra DESC;
+
+    -- Iterar pelos resultados (exemplo de uso)
+    LOOP
+        FETCH compras_cursor INTO compra_row;
+        EXIT WHEN NOT FOUND;
+
+        -- Processar cada linha, caso necessário (substitua pelo que deseja fazer com os dados)
+        RAISE NOTICE 'Compra: %, Valor: %, Data: %',
+            compra_row.codcompra,
+            compra_row.valorcompra,
+            compra_row.datacompra;
+    END LOOP;
+
+    -- Fechar o cursor
+    CLOSE compras_cursor;
+END;
+$$;
+
+-- Atualizar Informações de um Veículo
+CREATE OR REPLACE PROCEDURE atualizar_veiculo(
+    veiculo_id INT,
+    nova_placa VARCHAR,
+    novo_km NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE veiculos
+    SET placaveic = nova_placa, kmcorrido = novo_km
+    WHERE codveiculo = veiculo_id;
+
+    -- Verificação opcional
+    IF NOT FOUND THEN
+        RAISE NOTICE 'Nenhum veículo encontrado com ID %', veiculo_id;
+    END IF;
+END;
+$$;
+
+-- Cadastro de Transação Financeira
+CREATE OR REPLACE PROCEDURE cadastrar_transacao(
+    conta VARCHAR,
+    data_transacao DATE,
+    valor NUMERIC,
+    descricao VARCHAR,
+    cod_empresa INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO financeiro (contafinanceiro, datafinanceiro, valorfinanceiro, descricaofinanceiro, codempresa)
+    VALUES (conta, data_transacao, valor, descricao, cod_empresa);
+
+    -- Mensagem de confirmação (opcional)
+    RAISE NOTICE 'Transação cadastrada para a conta %, no valor de %', conta, valor;
+END;
+$$;
